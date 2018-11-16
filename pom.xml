@@ -104,7 +104,7 @@
         <profile>
             <id>dev</id>
             <properties>
-                <warName>mic_server2</warName>
+                <warName>mic_server_dev</warName>
                 <environment>dev</environment>
                 <swagger>true</swagger>
             </properties>
@@ -118,7 +118,7 @@
         <profile>
             <id>pro</id>
             <properties>
-                <warName>mic_server3</warName>
+                <warName>mic_server_pro</warName>
                 <environment>pro</environment>
                 <swagger>false</swagger>
             </properties>
