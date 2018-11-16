@@ -9,7 +9,7 @@
     <packaging>war</packaging>
 
     <name>server</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Demo project4 Spring Boot</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
