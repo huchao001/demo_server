@@ -2,7 +2,7 @@
     <configuration debug="true" scan="true" scanPeriod="30 seconds">
         <contextName>pcashier</contextName>
         <property name="log.base" value="${catalina.base}/logs" />
-        <property name="log.name" value="pcashier"></property>
+        <property name="log.name" value="hzz_app"></property>
         <jmxConfigurator />
 
         <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">

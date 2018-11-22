@@ -2,7 +2,7 @@
     <configuration debug="true" scan="true" scanPeriod="30 seconds">
         <contextName>mall_ota_app</contextName>
         <property name="log.base" value="${catalina.base}/logs" />
-        <property name="log.name" value="mall_ota_app"></property>
+        <property name="log.name" value="hzz_app"></property>
         <jmxConfigurator />
 
         <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
