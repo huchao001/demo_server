@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
     <configuration debug="true" scan="true" scanPeriod="30 seconds">
-        <contextName>mall_ota_app</contextName>
+        <contextName>hzz_app</contextName>
         <property name="log.base" value="${catalina.base}/logs" />
         <property name="log.name" value="hzz_app"></property>
         <jmxConfigurator />
