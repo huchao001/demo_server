@@ -6,6 +6,9 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 
 @SpringBootApplication
@@ -24,5 +27,14 @@ public class ServerApplication extends SpringBootServletInitializer {
     @Bean
     public MethodValidationPostProcessor mvp(){
         return new MethodValidationPostProcessor();
+    }
+
+    @Configuration
+    public static class SecurityPermitAllConfig extends WebSecurityConfigurerAdapter {
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+            http.authorizeRequests().anyRequest().permitAll()
+                    .and().csrf().disable();
+        }
     }
 }
