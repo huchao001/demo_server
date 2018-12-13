@@ -1,4 +1,4 @@
-package com.hzz.server.controller;
+package com.hzz.server.model.wx;
 
 public class BaseMessage {
      

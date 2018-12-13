@@ -1,8 +1,8 @@
 package com.hzz.server.controller;
 
+import com.hzz.server.model.wx.TextMessage;
 import com.hzz.server.util.MessageUtil;
 import io.swagger.annotations.Api;
-import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.slf4j.Logger;
@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.MessageDigest;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Map;
 

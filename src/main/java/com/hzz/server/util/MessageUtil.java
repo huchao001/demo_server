@@ -1,6 +1,6 @@
 package com.hzz.server.util;
 
-import com.hzz.server.controller.TextMessage;
+import com.hzz.server.model.wx.TextMessage;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.core.util.QuickWriter;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
