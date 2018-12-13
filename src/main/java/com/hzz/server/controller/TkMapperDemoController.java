@@ -45,6 +45,8 @@ public class TkMapperDemoController {
     @RequestMapping(value = "/queryCondition", method = {RequestMethod.GET})
     @ResponseBody
     public AjaxResult queryCondition() {
+        LOGGER.info("===info");
+        LOGGER.debug("===debug");
         if(LOGGER.isDebugEnabled()){
             LOGGER.debug("【Mybatis示例】,条件查询（queryCondition）");
         }
@@ -63,6 +65,8 @@ public class TkMapperDemoController {
     @RequestMapping(value = "/queryRowBounds", method = {RequestMethod.GET})
     @ResponseBody
     public AjaxResult queryRowBounds(int pageNo, int pageSize) {
+        LOGGER.info("===info");
+        LOGGER.debug("===debug");
         if(LOGGER.isDebugEnabled()){
             LOGGER.debug("【Mybatis示例】,传统分页查询（queryRowBounds）");
         }

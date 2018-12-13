@@ -17,15 +17,14 @@ import java.util.Arrays;
 @Api(value = "WxTokenController", tags = "WxTokenController", description = "微信TOKEN", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @RestController
 @RequestMapping("/wx")
-//@WebServlet(urlPatterns = "/wx/housekeeper", name = "wxHouseKeeperServlet")
 public class WxTokenController {
-    public static final String TOKEN = "mzmzo";
+    public static final String TOKEN = "hzz.token";
     protected final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping(value = "/signature")
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 
-        LOGGER.info("check token，",request.getParameterNames());
+        LOGGER.info("check token，{}", request.getParameterNames());
 
         try {
             // 开发者提交信息后，微信服务器将发送GET请求到填写的服务器地址URL上，GET请求携带参数
@@ -34,7 +33,7 @@ public class WxTokenController {
             String nonce = request.getParameter("nonce");// 随机数
             String echostr = request.getParameter("echostr");// 随机字符串
 
-            LOGGER.info("signature={},timestamp={},nonce={},echostr={}",signature,timestamp,nonce,echostr);
+            LOGGER.info("signature={},timestamp={},nonce={},echostr={}", signature, timestamp, nonce, echostr);
 
             PrintWriter out = response.getWriter();
             // 将token、timestamp、nonce三个参数进行字典序排序
