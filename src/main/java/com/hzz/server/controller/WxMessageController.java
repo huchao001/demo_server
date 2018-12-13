@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.Map;
 
@@ -34,11 +35,15 @@ public class WxMessageController {
      * @throws IOException
      */
     @ApiOperation(value = "接受/自动回复", notes = "接受/自动回复")
-    @GetMapping(value = "/message")
-    protected void accept(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    @RequestMapping(value = "/message")
+    protected void accept(HttpServletRequest request, HttpServletResponse response) {
 
         //微信服务器POST消息时用的是UTF-8编码，在接收时也要用同样的编码，否则中文会乱码；
-        request.setCharacterEncoding("UTF-8");
+        try {
+            request.setCharacterEncoding("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         response.setCharacterEncoding("UTF-8");
 
         boolean isGet = request.getMethod().toLowerCase().equals("get");
@@ -82,7 +87,12 @@ public class WxMessageController {
 
         String responseXml = MessageUtil.textMessageToXml(textMessage);
 
-        PrintWriter out = response.getWriter();
+        PrintWriter out = null;
+        try {
+            out = response.getWriter();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         out.print(responseXml);
         out.close();
 
