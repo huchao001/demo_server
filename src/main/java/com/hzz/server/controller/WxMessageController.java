@@ -42,7 +42,7 @@ public class WxMessageController {
         response.setCharacterEncoding("UTF-8");
 
         boolean isGet = request.getMethod().toLowerCase().equals("get");
-        LOGGER.info("accept message,isGet={}", request.getParameterNames());
+        LOGGER.info("accept message,isGet={}", isGet);
         // TODO 校验是否来自微信服务器
 
 
