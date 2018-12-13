@@ -24,7 +24,7 @@ public class WxTokenController {
     protected final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     @ApiOperation(value = "校验TOKEN", notes = "校验TOKEN")
-    @GetMapping(value = "/signature")
+    @RequestMapping(value = "/signature")
     protected void checkToken(HttpServletRequest request, HttpServletResponse response) {
 
         LOGGER.info("check token，{}", request.getParameterNames());
