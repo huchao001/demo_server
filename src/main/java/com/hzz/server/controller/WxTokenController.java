@@ -1,10 +1,12 @@
 package com.hzz.server.controller;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.codec.binary.Hex;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,8 +23,9 @@ public class WxTokenController {
     public static final String TOKEN = "hzz.token";
     protected final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
-    @RequestMapping(value = "/signature")
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+    @ApiOperation(value = "校验TOKEN", notes = "校验TOKEN")
+    @GetMapping(value = "/signature")
+    protected void checkToken(HttpServletRequest request, HttpServletResponse response) {
 
         LOGGER.info("check token，{}", request.getParameterNames());
 

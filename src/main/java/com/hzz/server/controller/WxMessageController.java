@@ -3,11 +3,13 @@ package com.hzz.server.controller;
 import com.hzz.server.model.wx.TextMessage;
 import com.hzz.server.util.MessageUtil;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,9 +33,18 @@ public class WxMessageController {
      * @param response
      * @throws IOException
      */
-    @RequestMapping(value = "/message")
+    @ApiOperation(value = "接受/自动回复", notes = "接受/自动回复")
+    @GetMapping(value = "/message")
     protected void accept(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        LOGGER.info("accept message，{}", request.getParameterNames());
+
+        //微信服务器POST消息时用的是UTF-8编码，在接收时也要用同样的编码，否则中文会乱码；
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+        boolean isGet = request.getMethod().toLowerCase().equals("get");
+        LOGGER.info("accept message,isGet={}", request.getParameterNames());
+        // TODO 校验是否来自微信服务器
+
 
         Map<String, String> message = MessageUtil.parseXml(request);
         String messageType = message.get("MsgType");
@@ -43,10 +54,10 @@ public class WxMessageController {
         if (MessageUtil.REQ_MESSAGE_TYPE_TEXT.equals(messageType)) {
 
             //打印接收所有参数
-            LOGGER.info("message={}", ToStringBuilder.reflectionToString(message, ToStringStyle.MULTI_LINE_STYLE));
+//            LOGGER.info("message={}", ToStringBuilder.reflectionToString(message, ToStringStyle.MULTI_LINE_STYLE));
+            LOGGER.info("message={}",message);
 
             String req_content = message.get("Content");
-
 
             if ("你好".equals(req_content)) {
                 res_content = "你好啊!";
@@ -66,6 +77,8 @@ public class WxMessageController {
         textMessage.setCreateTime(new Date().getTime());
         textMessage.setMsgType(messageType);
         textMessage.setContent(res_content);
+
+        LOGGER.info("message.response={}", ToStringBuilder.reflectionToString(textMessage, ToStringStyle.MULTI_LINE_STYLE));
 
         String responseXml = MessageUtil.textMessageToXml(textMessage);
 
